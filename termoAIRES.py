@@ -39,13 +39,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 	def __init__(self, parent=None):        
 		QMainWindow.__init__(self)
 		Ui_MainWindow.__init__(self)		
-		self.setupUi(self) 		
+		self.setupUi(self) 	
 
-		self.widget_2.setStyleSheet("background-image : url(layoutAires.png)")
+		#para colocar fundo animado
+		self.movie = QMovie("backgroundAires.gif")
+		self.movie.frameChanged.connect(self.repaint)
+		self.movie.start()			
 
-		self.timer = QTimer(self)	
+		self.widget_2.setVisible(False)
+		self.widget.setVisible(False)		
 
-		self.test = [1,2,3]	
+		self.timer = QTimer(self)				
 
 		self.createActions()
 		self.createMenus()		
@@ -70,7 +74,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 	def open(self):
 		self.filename = QFileDialog.getOpenFileName(self, 'Open File', os.getenv('HOME'))  
 		self.df = pd.read_excel(self.filename[0], index_col=0, dtype={'DATE':str, 'TIME':str, 'T01':float, 'T02':float, 'T03':float, 'T04':float, 'T05':float, 'T06':float, 'T07':float, 'T08':float, 'P01':float, 'P02':float,}) 
-		if(len(self.df['T01']) > 0):
+		if(len(self.df['T01']) > 0):					
+			self.widget_2.setVisible(True)
+			self.widget.setVisible(True)
+			self.widget_2.setStyleSheet("background-image : url(layoutAires.png)")
 			self.fileMenu02.setEnabled(True)
 			self.realizaCalculos()
 		else:
@@ -124,6 +131,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		self.label08.setText(str(round(np.mean(self.df['T08']),1)) + " " + str(u'\u00B1') + " " + str(round(np.std(self.df['T08']),1)))
 		self.label09.setText(str(round(np.mean(self.df['P01']),1)) + " " + str(u'\u00B1') + " " + str(round(np.std(self.df['P01']),1)))
 		self.label10.setText(str(round(np.mean(self.df['P02']),1)) + " " + str(u'\u00B1') + " " + str(round(np.std(self.df['P02']),1)))
+
+	#funcao que anima robo
+	def paintEvent(self, event):
+		currentFrame = self.movie.currentPixmap()
+		frameRect = currentFrame.rect()
+		frameRect.moveCenter(self.rect().center())
+		if frameRect.intersects(event.rect()):
+			painter = QPainter(self)
+			painter.drawPixmap(frameRect.left(), frameRect.top(), currentFrame)
 
 if __name__ == '__main__':
 	app = QApplication(sys.argv)
