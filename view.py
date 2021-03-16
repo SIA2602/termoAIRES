@@ -100,25 +100,25 @@ class View(QDialog, Ui_View):
 				self.ax.set_xlim(start, end)			
 				#self.ax.step(self.x, self.y, color=self.printColor(), linewidth=self.linesWidth()) #opcao ativa imprime grafico	
 				if(self.T01.isChecked()):
-					self.ax.plot(self.x, self.y['T01'], color=self.printColor(self.comboBoxT01)) #opcao ativa imprime grafico	
+					self.ax.plot(self.y['TIME'], self.y['T01'], color=self.printColor(self.comboBoxT01)) #opcao ativa imprime grafico	
 				if(self.T02.isChecked()):
-					self.ax.plot(self.x, self.y['T02'], color=self.printColor(self.comboBoxT02)) #opcao ativa imprime grafico
+					self.ax.plot(self.y['TIME'], self.y['T02'], color=self.printColor(self.comboBoxT02)) #opcao ativa imprime grafico
 				if(self.T03.isChecked()):
-					self.ax.plot(self.x, self.y['T03'], color=self.printColor(self.comboBoxT03)) #opcao ativa imprime grafico
+					self.ax.plot(self.y['TIME'], self.y['T03'], color=self.printColor(self.comboBoxT03)) #opcao ativa imprime grafico
 				if(self.T04.isChecked()):
-					self.ax.plot(self.x, self.y['T04'], color=self.printColor(self.comboBoxT04)) #opcao ativa imprime grafico
+					self.ax.plot(self.y['TIME'], self.y['T04'], color=self.printColor(self.comboBoxT04)) #opcao ativa imprime grafico
 				if(self.T05.isChecked()):
-					self.ax.plot(self.x, self.y['T05'], color=self.printColor(self.comboBoxT05)) #opcao ativa imprime grafico
+					self.ax.plot(self.y['TIME'], self.y['T05'], color=self.printColor(self.comboBoxT05)) #opcao ativa imprime grafico
 				if(self.T06.isChecked()):
-					self.ax.plot(self.x, self.y['T06'], color=self.printColor(self.comboBoxT06)) #opcao ativa imprime grafico
+					self.ax.plot(self.y['TIME'], self.y['T06'], color=self.printColor(self.comboBoxT06)) #opcao ativa imprime grafico
 				if(self.T07.isChecked()):
-					self.ax.plot(self.x, self.y['T07'], color=self.printColor(self.comboBoxT07)) #opcao ativa imprime grafico
+					self.ax.plot(self.y['TIME'], self.y['T07'], color=self.printColor(self.comboBoxT07)) #opcao ativa imprime grafico
 				if(self.T08.isChecked()):
-					self.ax.plot(self.x, self.y['T08'], color=self.printColor(self.comboBoxT08)) #opcao ativa imprime grafico
+					self.ax.plot(self.y['TIME'], self.y['T08'], color=self.printColor(self.comboBoxT08)) #opcao ativa imprime grafico
 				if(self.P01.isChecked()):
-					self.ax.plot(self.x, self.y['P01'], color=self.printColor(self.comboBoxP01)) #opcao ativa imprime grafico
+					self.ax.plot(self.y['TIME'], self.y['P01'], color=self.printColor(self.comboBoxP01)) #opcao ativa imprime grafico
 				if(self.P02.isChecked()):
-					self.ax.plot(self.x, self.y['P02'], color=self.printColor(self.comboBoxP02)) #opcao ativa imprime grafico			
+					self.ax.plot(self.y['TIME'], self.y['P02'], color=self.printColor(self.comboBoxP02)) #opcao ativa imprime grafico			
 				self.ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 				self.ax.xaxis.set_major_locator(MaxNLocator(integer=True))		
 				self.ax.xaxis.grid(color='gray', linestyle='--', linewidth=0.5)

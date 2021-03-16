@@ -18,6 +18,10 @@ import sys, os
 import pandas as pd
 import numpy as np
 
+#biblioteca responsavel por calcular as propriedades de refrigeracao
+import CoolProp as CP
+from CoolProp.CoolProp import PropsSI
+
 from PyQt5 import QtGui, QtCore
 
 from PyQt5 import uic
@@ -62,7 +66,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		self.timer.timeout.connect(self.update)
 
 	def update(self):
-		return
+		if(self.widget.isVisible()):		
+			self.realizaCalculos()
 
 	def createActions(self):
 		self.openAct = QAction("&Open Archive", self, shortcut="Ctrl+O", triggered=self.open)
@@ -73,7 +78,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 	def open(self):
 		self.filename = QFileDialog.getOpenFileName(self, 'Open File', os.getenv('HOME'))  
-		self.df = pd.read_excel(self.filename[0], index_col=0, dtype={'DATE':str, 'TIME':str, 'T01':float, 'T02':float, 'T03':float, 'T04':float, 'T05':float, 'T06':float, 'T07':float, 'T08':float, 'P01':float, 'P02':float,}) 
+		self.df = pd.read_excel(self.filename[0], index_col=0,  engine='openpyxl', dtype={'DATE':str, 'TIME':str, 'T01':float, 'T02':float, 'T03':float, 'T04':float, 'T05':float, 'T06':float, 'T07':float, 'T08':float, 'P01':float, 'P02':float,}) 
 		if(len(self.df['T01']) > 0):					
 			self.widget_2.setVisible(True)
 			self.widget.setVisible(True)
@@ -120,7 +125,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		self.menuBar().addMenu(self.fileMenu02)	
 		self.menuBar().addMenu(self.fileMenu03)	
 
+	def celsiusToKelvin(self,celsius):
+		return(celsius + 273.15)
+
+	def kelvinToCelsius(self,kelvin):
+		return(kelvin - 273.15)
+
+	def barToPascal(self,bar):
+		return (bar*100000.0)
+
 	def realizaCalculos(self):
+		#calculando media e desvio padrao dos dados excel
 		self.label01.setText(str(round(np.mean(self.df['T01']),1)) + " " + str(u'\u00B1') + " " + str(round(np.std(self.df['T01']),1)))
 		self.label02.setText(str(round(np.mean(self.df['T02']),1)) + " " + str(u'\u00B1') + " " + str(round(np.std(self.df['T02']),1)))
 		self.label03.setText(str(round(np.mean(self.df['T03']),1)) + " " + str(u'\u00B1') + " " + str(round(np.std(self.df['T03']),1)))
@@ -131,6 +146,53 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		self.label08.setText(str(round(np.mean(self.df['T08']),1)) + " " + str(u'\u00B1') + " " + str(round(np.std(self.df['T08']),1)))
 		self.label09.setText(str(round(np.mean(self.df['P01']),1)) + " " + str(u'\u00B1') + " " + str(round(np.std(self.df['P01']),1)))
 		self.label10.setText(str(round(np.mean(self.df['P02']),1)) + " " + str(u'\u00B1') + " " + str(round(np.std(self.df['P02']),1)))
+
+		#calculando capacidade do evap, subresfriamento e superaqueciemnto
+		#T_liq = self.celsiusToKelvin(56.5)
+		#T_suc = self.celsiusToKelvin(11.5)
+		#P_suc_comp = self.barToPascal(2.1 + 1.02)
+		#P_liq_comp = self.barToPascal(15.5 + 1.02)	
+
+		if(len(self.lineEdit.text()) > 0):	
+			if(self.checkBox.isChecked()):
+				T_liq = self.celsiusToKelvin(round(np.mean(self.df['T03']),1))
+			else:
+				T_liq = self.celsiusToKelvin(round(np.mean(self.df['T08']),1))
+			T_suc = self.celsiusToKelvin(round(np.mean(self.df['T04']),1))
+			P_suc_comp = self.barToPascal( round(np.mean(self.df['P02']),1) + 1.02)
+			P_liq_comp = self.barToPascal(round(np.mean(self.df['P01']),1) + 1.02)
+
+			T_sat_evap = PropsSI('T', 'P', P_suc_comp, 'Q', 1, 'R134a')			
+			self.label16.setText(str(round(self.kelvinToCelsius(T_sat_evap),2)))
+
+			T_sat_liq = PropsSI('T', 'P', P_liq_comp, 'Q', 1, 'R134a')			
+			self.label17.setText(str(round(self.kelvinToCelsius(T_sat_liq),2)))
+
+			h1 = PropsSI('H', 'P', P_suc_comp, 'Q', 1, 'R134a')
+			self.label14.setText(str(round(h1/1000.,2)))		
+
+			h3 = PropsSI('H', 'T', T_liq, 'Q', 0, 'R134a')
+			self.label15.setText(str(round(h3/1000.,2)))	
+
+			subResfriamento = T_sat_liq - T_liq
+			self.label12.setText(str(round(subResfriamento,2)))		
+
+			superAquecimento = T_suc - T_sat_evap
+			self.label13.setText(str(round(superAquecimento,2)))
+
+			Q_evap = float(self.lineEdit.text())*((h1-h3)/1000.0)/3600.
+			self.label11.setText(str(round(Q_evap,2)))		
+			self.label18.setText(str(round(Q_evap*3412)))
+
+		else:
+			self.label11.setText("?")
+			self.label12.setText("?")
+			self.label13.setText("?")
+			self.label14.setText("?")
+			self.label15.setText("?")
+			self.label16.setText("?")
+			self.label17.setText("?")
+			self.label18.setText("?")
 
 	#funcao que anima robo
 	def paintEvent(self, event):

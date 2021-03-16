@@ -10,11 +10,11 @@ def kelvinToCelsius(kelvin):
 def barToPascal(bar):
 	return (bar*100000.0)
 
-m = 123.79 #[kg/h]
-T_liq = celsiusToKelvin(56.5)
-T_suc = celsiusToKelvin(11.5)
-P_suc_comp = barToPascal(1.5 + 1.02)
-P_liq_comp = barToPascal(15.5 + 1.02)
+m = 123 #[kg/h]
+T_liq = celsiusToKelvin(53)
+T_suc = celsiusToKelvin(12.4)
+P_suc_comp = barToPascal(2.1 + 1.02)
+P_liq_comp = barToPascal(15.6 + 1.02)
 
 T_sat_evap = PropsSI('T', 'P', P_suc_comp, 'Q', 1, 'R134a')
 print('T_sat_evap = ', round(kelvinToCelsius(T_sat_evap),2), u"\u00B0"+'C')

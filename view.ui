@@ -37,39 +37,205 @@
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <layout class="QVBoxLayout" name="graphLayout"/>
+     </item>
+     <item row="2" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QSpinBox" name="spinBox">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>100</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="horizontalSlider">
+         <property name="maximum">
+          <number>500</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
      <item row="3" column="0">
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="1" column="6">
-        <widget class="QComboBox" name="comboBoxT08"/>
-       </item>
-       <item row="0" column="6">
-        <widget class="QComboBox" name="comboBoxT03"/>
-       </item>
-       <item row="1" column="7" alignment="Qt::AlignRight">
-        <widget class="QCheckBox" name="P01">
-         <property name="text">
-          <string>P01</string>
-         </property>
+       <item row="0" column="5">
+        <widget class="QComboBox" name="comboBoxT02">
+         <item>
+          <property name="text">
+           <string>pink</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>yellow</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>green</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>blue</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>orange</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>purple</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>red</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>cyan</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>deeppink</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>lime</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>white</string>
+          </property>
+         </item>
         </widget>
        </item>
-       <item row="1" column="4">
-        <widget class="QComboBox" name="comboBoxT07"/>
-       </item>
-       <item row="1" column="10">
-        <widget class="QComboBox" name="comboBoxP02"/>
-       </item>
-       <item row="1" column="3" alignment="Qt::AlignRight">
-        <widget class="QCheckBox" name="T07">
-         <property name="text">
-          <string>T07</string>
-         </property>
+       <item row="0" column="15">
+        <widget class="QComboBox" name="comboBoxT05">
+         <item>
+          <property name="text">
+           <string>orange</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>yellow</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>pink</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>green</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>blue</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>purple</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>red</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>cyan</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>deeppink</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>lime</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>white</string>
+          </property>
+         </item>
         </widget>
        </item>
-       <item row="0" column="7" alignment="Qt::AlignRight">
-        <widget class="QCheckBox" name="T04">
-         <property name="text">
-          <string>T04</string>
-         </property>
+       <item row="2" column="9">
+        <widget class="QComboBox" name="comboBoxT08">
+         <item>
+          <property name="text">
+           <string>lime</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>pink</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>green</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>blue</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>orange</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>red</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>cyan</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>deeppink</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>white</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>purple</string>
+          </property>
+         </item>
         </widget>
        </item>
        <item row="0" column="1" alignment="Qt::AlignRight">
@@ -79,20 +245,45 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1" alignment="Qt::AlignRight">
+       <item row="2" column="3" alignment="Qt::AlignRight">
+        <widget class="QCheckBox" name="T07">
+         <property name="text">
+          <string>T07</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="10" alignment="Qt::AlignRight">
+        <widget class="QCheckBox" name="T04">
+         <property name="text">
+          <string>T04</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1" alignment="Qt::AlignRight">
         <widget class="QCheckBox" name="T06">
          <property name="text">
           <string>T06</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="8">
-        <widget class="QComboBox" name="comboBoxP01"/>
-       </item>
        <item row="0" column="3" alignment="Qt::AlignRight">
         <widget class="QCheckBox" name="T02">
          <property name="text">
           <string>T02</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="13" alignment="Qt::AlignRight">
+        <widget class="QCheckBox" name="T05">
+         <property name="text">
+          <string>T05</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="7" alignment="Qt::AlignRight">
+        <widget class="QCheckBox" name="T08">
+         <property name="text">
+          <string>T08</string>
          </property>
         </widget>
        </item>
@@ -155,45 +346,328 @@
          </item>
         </widget>
        </item>
-       <item row="0" column="9" alignment="Qt::AlignRight">
-        <widget class="QCheckBox" name="T05">
+       <item row="0" column="0">
+        <widget class="QCheckBox" name="checkBox3">
          <property name="text">
-          <string>T05</string>
+          <string>Grid Vertical</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="5" alignment="Qt::AlignRight">
-        <widget class="QCheckBox" name="T08">
+       <item row="2" column="2">
+        <widget class="QComboBox" name="comboBoxT06">
+         <item>
+          <property name="text">
+           <string>red</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>pink</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>green</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>blue</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>orange</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>cyan</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>lime</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>deeppink</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>white</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>purple</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="checkBox2">
          <property name="text">
-          <string>T08</string>
+          <string>Grid Horizontal</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="9" alignment="Qt::AlignRight">
-        <widget class="QCheckBox" name="P02">
-         <property name="text">
-          <string>P02</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="4">
-        <widget class="QComboBox" name="comboBoxT02"/>
-       </item>
-       <item row="0" column="10">
-        <widget class="QComboBox" name="comboBoxT05"/>
-       </item>
-       <item row="0" column="5" alignment="Qt::AlignRight">
+       <item row="0" column="7" alignment="Qt::AlignRight">
         <widget class="QCheckBox" name="T03">
          <property name="text">
           <string>T03</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="8">
-        <widget class="QComboBox" name="comboBoxT04"/>
+       <item row="2" column="13" alignment="Qt::AlignRight">
+        <widget class="QCheckBox" name="P02">
+         <property name="text">
+          <string>P02</string>
+         </property>
+        </widget>
        </item>
-       <item row="1" column="2">
-        <widget class="QComboBox" name="comboBoxT06">
+       <item row="2" column="10" alignment="Qt::AlignRight">
+        <widget class="QCheckBox" name="P01">
+         <property name="text">
+          <string>P01</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="9">
+        <widget class="QComboBox" name="comboBoxT03">
+         <item>
+          <property name="text">
+           <string>green</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>yellow</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>pink</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>blue</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>orange</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>purple</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>red</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>cyan</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>deeppink</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>lime</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>white</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="5">
+        <widget class="QComboBox" name="comboBoxT07">
+         <item>
+          <property name="text">
+           <string>cyan</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>pink</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>green</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>blue</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>orange</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>red</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>lime</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>deeppink</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>white</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>purple</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="12">
+        <widget class="QComboBox" name="comboBoxT04">
+         <item>
+          <property name="text">
+           <string>blue</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>yellow</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>pink</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>green</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>orange</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>purple</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>red</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>cyan</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>deeppink</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>lime</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>white</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="12">
+        <widget class="QComboBox" name="comboBoxP01">
+         <item>
+          <property name="text">
+           <string>deeppink</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>pink</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>green</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>blue</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>orange</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>red</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>cyan</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>lime</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>white</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>purple</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="15">
+        <widget class="QComboBox" name="comboBoxP02">
+         <item>
+          <property name="text">
+           <string>purple</string>
+          </property>
+         </item>
          <item>
           <property name="text">
            <string>pink</string>
@@ -239,52 +713,6 @@
            <string>white</string>
           </property>
          </item>
-         <item>
-          <property name="text">
-           <string>purple</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QCheckBox" name="checkBox3">
-         <property name="text">
-          <string>Grid Vertical</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QCheckBox" name="checkBox2">
-         <property name="text">
-          <string>Grid Horizontal</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="0" column="0">
-      <layout class="QVBoxLayout" name="graphLayout"/>
-     </item>
-     <item row="2" column="0">
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QSpinBox" name="spinBox">
-         <property name="minimum">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <number>100</number>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QSlider" name="horizontalSlider">
-         <property name="maximum">
-          <number>500</number>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
         </widget>
        </item>
       </layout>
