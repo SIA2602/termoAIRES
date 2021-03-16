@@ -147,12 +147,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		self.label09.setText(str(round(np.mean(self.df['P01']),1)) + " " + str(u'\u00B1') + " " + str(round(np.std(self.df['P01']),1)))
 		self.label10.setText(str(round(np.mean(self.df['P02']),1)) + " " + str(u'\u00B1') + " " + str(round(np.std(self.df['P02']),1)))
 
-		#calculando capacidade do evap, subresfriamento e superaqueciemnto
-		#T_liq = self.celsiusToKelvin(56.5)
-		#T_suc = self.celsiusToKelvin(11.5)
-		#P_suc_comp = self.barToPascal(2.1 + 1.02)
-		#P_liq_comp = self.barToPascal(15.5 + 1.02)	
-
+		#calculando capacidade do evap, subresfriamento e superaqueciemnto	
 		if(len(self.lineEdit.text()) > 0):	
 			if(self.checkBox.isChecked()):
 				T_liq = self.celsiusToKelvin(round(np.mean(self.df['T03']),1))
@@ -194,7 +189,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 			self.label17.setText("?")
 			self.label18.setText("?")
 
-	#funcao que anima robo
+	#funcao que anima gif
 	def paintEvent(self, event):
 		currentFrame = self.movie.currentPixmap()
 		frameRect = currentFrame.rect()
