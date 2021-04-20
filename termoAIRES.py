@@ -71,7 +71,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 	def createActions(self):
 		self.openAct = QAction("&Open Archive", self, shortcut="Ctrl+O", triggered=self.open)
-		self.openExport = QAction("&Export Data", self, shortcut="Ctrl+D", triggered=self.export)  
+		self.openExport = QAction("&Export Data", self, shortcut="Ctrl+D", enabled=False, triggered=self.export)  
 		self.openView = QAction("&View Graph", self, shortcut="Ctrl+P", triggered=self.view)  
 		self.openHelp = QAction("&Help", self, shortcut="Ctrl+H", triggered=self.help)
 		self.openAbout = QAction("&About", self, shortcut="Ctrl+B", triggered=self.about)
@@ -83,8 +83,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 			self.widget_2.setVisible(True)
 			self.widget.setVisible(True)
 			self.widget_2.setStyleSheet("background-image : url(layoutAires.png)")
-			self.fileMenu02.setEnabled(True)
+			self.fileMenu02.setEnabled(True)			
 			self.realizaCalculos()
+			self.openExport.setEnabled(True)
 		else:
 			return
 
@@ -118,7 +119,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		self.fileMenu01.addAction(self.openAct)        
 		self.fileMenu01.addSeparator() 
 		self.fileMenu01.addAction(self.openExport)        
-		self.fileMenu01.addSeparator()
+		self.fileMenu01.addSeparator()		
 
 		self.fileMenu02 = QMenu("&View", self)
 		self.fileMenu02.addSeparator()
