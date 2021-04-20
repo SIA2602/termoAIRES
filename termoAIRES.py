@@ -76,8 +76,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		self.openHelp = QAction("&Help", self, shortcut="Ctrl+H", triggered=self.help)
 		self.openAbout = QAction("&About", self, shortcut="Ctrl+B", triggered=self.about)
 
-	def open(self):
-		self.filename = QFileDialog.getOpenFileName(self, 'Open File', os.getenv('HOME'))  
+	def open(self):		
+		self.filename = QFileDialog.getOpenFileName(self, 'Open File', os.getenv('HOME'), 'Excel File (*.xlsx)')  
 		self.df = pd.read_excel(self.filename[0], index_col=0,  engine='openpyxl', dtype={'DATE':str, 'TIME':str, 'T01':float, 'T02':float, 'T03':float, 'T04':float, 'T05':float, 'T06':float, 'T07':float, 'T08':float, 'P01':float, 'P02':float,}) 
 		if(len(self.df['T01']) > 0):					
 			self.widget_2.setVisible(True)
@@ -90,7 +90,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 			return
 
 	def export(self):
-		self.filename = QFileDialog.getSaveFileName(self, 'Save File', os.getenv('HOME'))
+		self.filename = QFileDialog.getSaveFileName(self, 'Save File', os.getenv('HOME'), 'Excel File (*.xlsx)')
 
 		data = {'T01': [self.label01.text()], 'T02': [self.label02.text()], 'T03': [self.label03.text()], 'T04': [self.label04.text()], 
 		'T05': [self.label05.text()], 'T06': [self.label06.text()], 'T07': [self.label07.text()], 'T08': [self.label08.text()], 
