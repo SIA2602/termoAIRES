@@ -89,7 +89,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 			return
 
 	def export(self):
-		return	
+		self.filename = QFileDialog.getSaveFileName(self, 'Save File', os.getenv('HOME'))
+
+		data = {'T01': [self.label01.text()], 'T02': [self.label02.text()], 'T03': [self.label03.text()], 'T04': [self.label04.text()], 
+		'T05': [self.label05.text()], 'T06': [self.label06.text()], 'T07': [self.label07.text()], 'T08': [self.label08.text()], 
+		'P01': [self.label09.text()], 'P02': [self.label10.text()],  'Q_Evap [BTU/h]': [self.label18.text()], 'Q_Evap [kW]': [self.label11.text()],
+		'Sub_Resfriamento [K]': [self.label12.text()], 'Super_Aquecimento [K]': [self.label13.text()], 'h1 [kJ/kg]': [self.label14.text()],
+		'h3 [kJ/kg]': [self.label15.text()], 'T_sat_Evap [C]': [self.label16.text()], 'T_sat_Liq [C]': [self.label17.text()],
+		 'Mass Flow [kg/h]': [self.lineEdit.text()]}
+
+		df = pd.DataFrame(data, columns = ['T01', 'T02', 'T03', 'T04', 'T05', 'T06', 'T07', 'T08', 'P01', 'P02', 'Q_Evap [BTU/h]', 'Q_Evap [kW]',
+		'Sub_Resfriamento [K]', 'Super_Aquecimento [K]', 'h1 [kJ/kg]', 'h3 [kJ/kg]', 'T_sat_Evap [C]', 'T_sat_Liq [C]', 'Mass Flow [kg/h]'])
+
+		df.to_excel (self.filename[0]+".xlsx", index = False, header=True)			
 	
 	def view(self):
 		View(self.df).exec_()
