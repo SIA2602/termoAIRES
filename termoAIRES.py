@@ -59,7 +59,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		self.createMenus()		
 
 		self.events()
-		self.timer.setInterval(200)
+		self.timer.setInterval(350)
 		self.timer.start()	
 
 	def events(self):
@@ -68,6 +68,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 	def update(self):
 		if(self.widget.isVisible()):		
 			self.realizaCalculos()
+		#Caso nao tenha valor para vazao massica eh bloqueado o menu view
+		if(len(self.lineEdit.text()) > 0):
+			self.fileMenu02.setEnabled(True)
+		else:
+			self.fileMenu02.setEnabled(False)
 
 	def createActions(self):
 		self.openAct = QAction("&Open Archive", self, shortcut="Ctrl+O", triggered=self.open)
@@ -82,9 +87,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		if(len(self.df['T01']) > 0):					
 			self.widget_2.setVisible(True)
 			self.widget.setVisible(True)
-			self.widget_2.setStyleSheet("background-image : url(layoutAires.png)")
-			self.fileMenu02.setEnabled(True)			
-			self.realizaCalculos()
+			self.widget_2.setStyleSheet("background-image : url(layoutAires.png)")						
+			self.realizaCalculos()			
 			self.openExport.setEnabled(True)
 		else:
 			return
@@ -105,7 +109,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 		df.to_excel (self.filename[0]+".xlsx", index = False, header=True)			
 	
 	def view(self):
-		View(self.df).exec_()
+		View(self.df, self.listCapEvap).exec_()
 
 	def help(self):		
 		Help().exec_()		
@@ -146,6 +150,36 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 	def barToPascal(self,bar):
 		return (bar*100000.0)
+
+	def realizaCalculosCapacidadeNoTempo(self):
+		#calculando capacidade do evap, subresfriamento e superaqueciemnto	
+		if(len(self.lineEdit.text()) > 0):
+			listaCap = []
+			for i in range(len(self.df['T03'])):	
+				if(self.checkBox.isChecked()):
+					T_liq = self.celsiusToKelvin(self.df['T03'][i])
+				else:
+					T_liq = self.celsiusToKelvin(self.df['T08'][i])
+				T_suc = self.celsiusToKelvin(self.df['T04'][i])
+				P_suc_comp = self.barToPascal(self.df['P02'][i] + 1.02)
+				P_liq_comp = self.barToPascal(self.df['P01'][i] + 1.02)
+
+				T_sat_evap = PropsSI('T', 'P', P_suc_comp, 'Q', 1, 'R134a')					
+
+				T_sat_liq = PropsSI('T', 'P', P_liq_comp, 'Q', 1, 'R134a')					
+
+				h1 = PropsSI('H', 'P', P_suc_comp, 'Q', 1, 'R134a')						
+
+				h3 = PropsSI('H', 'T', T_liq, 'Q', 0, 'R134a')				
+
+				subResfriamento = T_sat_liq - T_liq					
+
+				superAquecimento = T_suc - T_sat_evap				
+
+				Q_evap = float(self.lineEdit.text())*((h1-h3)/1000.0)/3600.
+				Q_evap = round(Q_evap*3412)/1000	
+				listaCap.append(Q_evap)
+			return listaCap
 
 	def realizaCalculos(self):
 		#calculando media e desvio padrao dos dados excel
@@ -191,6 +225,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 			Q_evap = float(self.lineEdit.text())*((h1-h3)/1000.0)/3600.
 			self.label11.setText(str(round(Q_evap,2)))		
 			self.label18.setText(str(round(Q_evap*3412)))
+
+			self.listCapEvap = self.realizaCalculosCapacidadeNoTempo()			
 
 		else:
 			self.label11.setText("?")

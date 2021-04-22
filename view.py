@@ -21,7 +21,7 @@ Ui_View, _ = uic.loadUiType("view.ui")
 
 class View(QDialog, Ui_View):
 
-	def __init__(self, data, parent = None):
+	def __init__(self, data, dataCapEvap, parent = None):
 
 		QDialog.__init__(self, parent=parent)
 		Ui_View.__init__(self)
@@ -32,6 +32,7 @@ class View(QDialog, Ui_View):
 		self.events()
 		
 		self.y = data	
+		self.yCapEvap = dataCapEvap
 		self.x = np.arange(0, len(self.y['T01']), 1).tolist()	
 
 		self.createGraph()
@@ -118,7 +119,9 @@ class View(QDialog, Ui_View):
 			if(self.P01.isChecked()):
 				self.ax.plot(self.y['TIME'], self.y['P01'], color=self.printColor(self.comboBoxP01)) #opcao ativa imprime grafico
 			if(self.P02.isChecked()):
-				self.ax.plot(self.y['TIME'], self.y['P02'], color=self.printColor(self.comboBoxP02)) #opcao ativa imprime grafico			
+				self.ax.plot(self.y['TIME'], self.y['P02'], color=self.printColor(self.comboBoxP02)) #opcao ativa imprime grafico	
+			if(self.Q_Evap.isChecked()):
+				self.ax.plot(self.y['TIME'], self.yCapEvap, color=self.printColor(self.comboBoxQ_Evap)) #opcao ativa imprime grafico		
 			self.ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 			self.ax.xaxis.set_major_locator(MaxNLocator(integer=True))		
 			self.ax.xaxis.grid(color='gray', linestyle='--', linewidth=0.5)
