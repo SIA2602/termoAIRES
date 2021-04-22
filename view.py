@@ -48,7 +48,7 @@ class View(QDialog, Ui_View):
 	def printColor(self, comboBox):
 		if(comboBox.currentText() == 'blue'):
 			return 'b'
-		if(comboBox.currentText() == 'cian'):
+		if(comboBox.currentText() == 'cyan'):
 			return 'c'
 		elif(comboBox.currentText() == 'yellow'):
 			return 'y'
@@ -94,54 +94,54 @@ class View(QDialog, Ui_View):
 			end = start + 21*self.spinBox.value()/20
 			#nao deixando ultrapassar o numero maximo de bits para visualizacao
 			if(self.spinBox.value()+1 > len(self.y)): self.spinBox.setValue(len(self.y))
-			else:				
-				self.ax = self.figure.add_subplot(111)
-				#ajustando eixo de visualizacao			
-				self.ax.set_xlim(start, end)			
-				#self.ax.step(self.x, self.y, color=self.printColor(), linewidth=self.linesWidth()) #opcao ativa imprime grafico	
-				if(self.T01.isChecked()):
-					self.ax.plot(self.y['TIME'], self.y['T01'], color=self.printColor(self.comboBoxT01)) #opcao ativa imprime grafico	
-				if(self.T02.isChecked()):
-					self.ax.plot(self.y['TIME'], self.y['T02'], color=self.printColor(self.comboBoxT02)) #opcao ativa imprime grafico
-				if(self.T03.isChecked()):
-					self.ax.plot(self.y['TIME'], self.y['T03'], color=self.printColor(self.comboBoxT03)) #opcao ativa imprime grafico
-				if(self.T04.isChecked()):
-					self.ax.plot(self.y['TIME'], self.y['T04'], color=self.printColor(self.comboBoxT04)) #opcao ativa imprime grafico
-				if(self.T05.isChecked()):
-					self.ax.plot(self.y['TIME'], self.y['T05'], color=self.printColor(self.comboBoxT05)) #opcao ativa imprime grafico
-				if(self.T06.isChecked()):
-					self.ax.plot(self.y['TIME'], self.y['T06'], color=self.printColor(self.comboBoxT06)) #opcao ativa imprime grafico
-				if(self.T07.isChecked()):
-					self.ax.plot(self.y['TIME'], self.y['T07'], color=self.printColor(self.comboBoxT07)) #opcao ativa imprime grafico
-				if(self.T08.isChecked()):
-					self.ax.plot(self.y['TIME'], self.y['T08'], color=self.printColor(self.comboBoxT08)) #opcao ativa imprime grafico
-				if(self.P01.isChecked()):
-					self.ax.plot(self.y['TIME'], self.y['P01'], color=self.printColor(self.comboBoxP01)) #opcao ativa imprime grafico
-				if(self.P02.isChecked()):
-					self.ax.plot(self.y['TIME'], self.y['P02'], color=self.printColor(self.comboBoxP02)) #opcao ativa imprime grafico			
-				self.ax.yaxis.set_major_locator(MaxNLocator(integer=True))
-				self.ax.xaxis.set_major_locator(MaxNLocator(integer=True))		
-				self.ax.xaxis.grid(color='gray', linestyle='--', linewidth=0.5)
-				self.ax.xaxis.grid(self.checkBox3.isChecked())	
-				self.ax.yaxis.grid(color='gray', linestyle='--', linewidth=0.5)			
-				self.ax.yaxis.grid(self.checkBox2.isChecked())
-				self.ax.set_facecolor((39./256.,40./256.,34./256.))	
-				self.figure.set_facecolor((39./256.,40./256.,34./256.))
-				color = "white"	
-				#self.ax.set_ylabel(self.comboBox3.currentText(), color=color, size=15)
-				self.ax.spines['bottom'].set_color(color)
-				self.ax.spines['top'].set_color(color)
-				self.ax.spines['left'].set_color(color)
-				self.ax.spines['right'].set_color(color)
-				for t in self.ax.xaxis.get_ticklines(): t.set_color(color)
-				for t in self.ax.yaxis.get_ticklines(): t.set_color(color)
-				for t in self.ax.xaxis.get_ticklines(): t.set_color(color)
-				for t in self.ax.yaxis.get_ticklines(): t.set_color(color)
-				for label in self.ax.get_yticklabels():
-					label.set_color(color)
-				for label in self.ax.get_xticklabels():
-					label.set_color(color)	
-				self.canvas.draw()	
+							
+			self.ax = self.figure.add_subplot(111)
+			#ajustando eixo de visualizacao			
+			self.ax.set_xlim(start, end)			
+			#self.ax.step(self.x, self.y, color=self.printColor(), linewidth=self.linesWidth()) #opcao ativa imprime grafico	
+			if(self.T01.isChecked()):
+				self.ax.plot(self.y['TIME'], self.y['T01'], color=self.printColor(self.comboBoxT01)) #opcao ativa imprime grafico	
+			if(self.T02.isChecked()):
+				self.ax.plot(self.y['TIME'], self.y['T02'], color=self.printColor(self.comboBoxT02)) #opcao ativa imprime grafico
+			if(self.T03.isChecked()):
+				self.ax.plot(self.y['TIME'], self.y['T03'], color=self.printColor(self.comboBoxT03)) #opcao ativa imprime grafico
+			if(self.T04.isChecked()):
+				self.ax.plot(self.y['TIME'], self.y['T04'], color=self.printColor(self.comboBoxT04)) #opcao ativa imprime grafico
+			if(self.T05.isChecked()):
+				self.ax.plot(self.y['TIME'], self.y['T05'], color=self.printColor(self.comboBoxT05)) #opcao ativa imprime grafico
+			if(self.T06.isChecked()):
+				self.ax.plot(self.y['TIME'], self.y['T06'], color=self.printColor(self.comboBoxT06)) #opcao ativa imprime grafico
+			if(self.T07.isChecked()):
+				self.ax.plot(self.y['TIME'], self.y['T07'], color=self.printColor(self.comboBoxT07)) #opcao ativa imprime grafico
+			if(self.T08.isChecked()):
+				self.ax.plot(self.y['TIME'], self.y['T08'], color=self.printColor(self.comboBoxT08)) #opcao ativa imprime grafico
+			if(self.P01.isChecked()):
+				self.ax.plot(self.y['TIME'], self.y['P01'], color=self.printColor(self.comboBoxP01)) #opcao ativa imprime grafico
+			if(self.P02.isChecked()):
+				self.ax.plot(self.y['TIME'], self.y['P02'], color=self.printColor(self.comboBoxP02)) #opcao ativa imprime grafico			
+			self.ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+			self.ax.xaxis.set_major_locator(MaxNLocator(integer=True))		
+			self.ax.xaxis.grid(color='gray', linestyle='--', linewidth=0.5)
+			self.ax.xaxis.grid(self.checkBox3.isChecked())	
+			self.ax.yaxis.grid(color='gray', linestyle='--', linewidth=0.5)			
+			self.ax.yaxis.grid(self.checkBox2.isChecked())
+			self.ax.set_facecolor((39./256.,40./256.,34./256.))	
+			self.figure.set_facecolor((39./256.,40./256.,34./256.))
+			color = "white"	
+			#self.ax.set_ylabel(self.comboBox3.currentText(), color=color, size=15)
+			self.ax.spines['bottom'].set_color(color)
+			self.ax.spines['top'].set_color(color)
+			self.ax.spines['left'].set_color(color)
+			self.ax.spines['right'].set_color(color)
+			for t in self.ax.xaxis.get_ticklines(): t.set_color(color)
+			for t in self.ax.yaxis.get_ticklines(): t.set_color(color)
+			for t in self.ax.xaxis.get_ticklines(): t.set_color(color)
+			for t in self.ax.yaxis.get_ticklines(): t.set_color(color)
+			for label in self.ax.get_yticklabels():
+				label.set_color(color)
+			for label in self.ax.get_xticklabels():
+				label.set_color(color)	
+			self.canvas.draw()	
 		else: return
     
 
